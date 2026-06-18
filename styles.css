@@ -100,6 +100,43 @@ body {
   opacity: 0.95;
 }
 
+.brand-vp {
+  font-style: normal;
+  color: var(--hanwha-orange);
+  font-weight: 800;
+}
+
+.vp-mark {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.vp-fullname {
+  font-size: 0.95rem;
+  opacity: 0.88;
+  margin: -8px 0 16px;
+  letter-spacing: 0.04em;
+}
+
+.vp-desc {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.vp-desc strong {
+  color: var(--hanwha-orange-dark);
+}
+
+.info-card.accent .vp-desc {
+  color: var(--text);
+}
+
+.info-card.accent .vp-desc strong {
+  color: var(--hanwha-orange-dark);
+}
+
 .btn-portal {
   padding: 10px 20px;
   background: var(--hanwha-orange);
