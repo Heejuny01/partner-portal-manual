@@ -58,38 +58,46 @@ body {
   display: flex;
   align-items: center;
   gap: 14px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.brand-symbol {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-}
-
-.brand-symbol span {
+.brand-ci {
   display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--hanwha-orange);
+  height: 28px;
+  width: auto;
+  object-fit: contain;
 }
 
-.brand-symbol span:nth-child(2) { opacity: 0.7; }
-.brand-symbol span:nth-child(3) { opacity: 0.45; }
+.brand-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
 
-.brand-company {
+.brand-system {
   display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--hanwha-orange);
-  letter-spacing: 0.02em;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--hanwha-black);
+  letter-spacing: -0.02em;
 }
 
 .brand-title {
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+.welcome-ci {
+  display: block;
+  margin-bottom: 20px;
+  height: 26px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
 }
 
 .btn-portal {
@@ -736,6 +744,14 @@ body {
   padding: 40px 20px;
   color: var(--text-muted);
   font-size: 0.875rem;
+}
+
+.footer-ci {
+  display: block;
+  height: 24px;
+  width: auto;
+  margin: 0 auto 16px;
+  opacity: 0.85;
 }
 
 .site-footer p { margin-bottom: 8px; }
