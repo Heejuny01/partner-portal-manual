@@ -6,6 +6,9 @@ from PIL import Image
 PDF = Path(r"c:\Users\pc001\Desktop\공사관리시스템_협력사포탈_사용자매뉴얼_v0.1.pdf")
 OUT = Path(__file__).parent / "images"
 
+# page-02는 PDF가 아닌 실제 포탈(b2b.hwenc.com) 캡처 사용
+SKIP_PAGE_INDEXES = {1}
+
 
 def is_dark(px, x, y, w, h):
     if x < 0 or y < 0 or x >= w or y >= h:
@@ -88,6 +91,9 @@ def main():
     OUT.mkdir(exist_ok=True)
     doc = fitz.open(PDF)
     for i in range(len(doc)):
+        if i in SKIP_PAGE_INDEXES:
+            print(f"page-{i + 1:02d}.png skipped (live portal capture)")
+            continue
         im = render_page(doc, i)
         result = crop_page(im)
         out = OUT / f"page-{i + 1:02d}.png"
