@@ -1,16 +1,15 @@
-"""Re-extract and crop manual pages: system UI + 기능설명 only."""
+"""Re-extract and crop manual pages: system UI screenshot only."""
 from pathlib import Path
 import fitz
-from PIL import Image, ImageDraw
+from PIL import Image
 
 PDF = Path(r"c:\Users\pc001\Desktop\공사관리시스템_협력사포탈_사용자매뉴얼_v0.1.pdf")
 OUT = Path(__file__).parent / "images"
 
 # 2x render -> 1560x1080
-TOP = 142          # UF 헤더 + 메뉴/개요/비고/작성일 행 제거
-BOTTOM = 1038      # 페이지 번호 제거
-FUNC_COL = 920     # 기능설명 열 시작 (대략)
-MASK_UNTIL = 208   # 데이터 행(메뉴·개요 등) 가리는 높이
+CONTENT_TOP = 208   # 메타데이터 표(UF·메뉴·개요·비고·작성일) 아래
+BOTTOM = 1038       # 페이지 번호 제거
+SYSTEM_RIGHT = 895  # 기능설명 열 제외, 시스템 화면만
 
 
 def render_page(doc, index: int) -> Image.Image:
@@ -21,13 +20,7 @@ def render_page(doc, index: int) -> Image.Image:
 
 def crop_page(im: Image.Image) -> Image.Image:
     w, h = im.size
-    cropped = im.crop((0, TOP, w, min(BOTTOM, h)))
-    draw = ImageDraw.Draw(cropped)
-    # 상단 데이터 행의 메뉴·개요·비고·작성일 영역만 흰색으로 가림 (기능설명 열은 유지)
-    mask_h = MASK_UNTIL - TOP
-    if mask_h > 0:
-        draw.rectangle((0, 0, FUNC_COL, mask_h), fill=(255, 255, 255))
-    return cropped
+    return im.crop((0, CONTENT_TOP, SYSTEM_RIGHT, min(BOTTOM, h)))
 
 
 def main():
